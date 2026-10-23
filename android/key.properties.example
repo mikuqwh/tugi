@@ -1,0 +1,22 @@
+# Release signing template for Tugi.
+#
+# Copy this file to `android/key.properties` and fill in your own values.
+# `key.properties` is git-ignored — never commit it.
+#
+# 1. Generate a keystore (once):
+#      keytool -genkey -v -keystore tugi-release.jks ^
+#        -keyalg RSA -keysize 2048 -validity 10000 -alias tugi
+#
+# 2. Put the .jks somewhere OUTSIDE the repo (e.g. C:\Users\<you>\keystores\)
+#    and reference it with an absolute path below.
+#
+# 3. Build:
+#      flutter build apk --release --split-per-abi
+#
+# If this file is absent, the release build falls back to the debug keystore,
+# which is installable but NOT accepted by Google Play.
+
+storeFile=C:/Users/REPLACE_ME/keystores/tugi-release.jks
+storePassword=REPLACE_ME
+keyAlias=tugi
+keyPassword=REPLACE_ME

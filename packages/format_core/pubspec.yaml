@@ -1,0 +1,13 @@
+name: format_core
+description: >-
+  Format registry, quality policies and capability parsing for Tugi's
+  converters. Pure Dart: no Flutter, no IO, no ffmpeg process.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dev_dependencies:
+  test: ^1.25.0
+  lints: ^4.0.0

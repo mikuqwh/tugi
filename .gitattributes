@@ -1,0 +1,15 @@
+# Normalise line endings; Windows contributors otherwise rewrite whole files.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ttf binary
+*.otf binary
+*.apk binary
+*.aab binary
+*.jks binary
+*.keystore binary
+*.so binary
+*.zip binary

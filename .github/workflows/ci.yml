@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: analyze + host tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Pin `flutter-version` once you know the exact release you ship with;
+      # stable keeps CI green across patch bumps in the meantime.
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Dependencies
+        run: flutter pub get
+
+      - name: Format core tests (pure Dart)
+        working-directory: packages/format_core
+        run: dart pub get && dart test
+
+      - name: Analyze
+        run: flutter analyze --no-fatal-infos
+
+      - name: Host tests
+        run: flutter test test/ffmpeg test/convert test/services test/ui test/utils
+
+  build-apk:
+    name: debug APK (no release signing)
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      # Pin `flutter-version` once you know the exact release you ship with;
+      # stable keeps CI green across patch bumps in the meantime.
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - run: flutter pub get
+
+      # Debug build only: the release build in this project falls back to the
+      # debug keystore, and a 260 MB GPL ffmpeg APK does not belong in CI
+      # artifacts on every run.
+      - name: Build debug APK
+        run: flutter build apk --debug

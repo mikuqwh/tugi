@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  What the FileProvider may hand out. Both are inside the app's own storage:
+  works/ lives under files/, conversion scratch under cache/.
+-->
+<paths>
+    <files-path name="works" path="." />
+    <cache-path name="cache" path="." />
+</paths>

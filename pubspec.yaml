@@ -1,0 +1,74 @@
+name: tugi
+description: 'Tugi (图叽) — a local media toolbox for GIF editing, format conversion and image tools.'
+publish_to: 'none'
+
+version: 0.4.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Inherited Chinese strings for Material widgets (the text-selection
+  # toolbar was showing Copy / Select all in English).
+  flutter_localizations:
+    sdk: flutter
+  # Pure-Dart format registry + capability parsing. Flutter-free on purpose so
+  # its tests run with `dart test` (no emulator, no widget harness).
+  format_core:
+    path: packages/format_core
+  # ffmpeg-kit Full GPL (maintained fork; original 'ffmpeg_kit' is REMOVED from pub.dev).
+  # Matches App's ffmpeg-kit-flutter-android-full-gpl-arm64-v8a-8.0.0 (FFmpeg 8.x). GPL-3.0.
+  ffmpeg_kit_flutter_new: ^4.6.7
+  path_provider: ^2.1.0
+  image_picker: ^1.0.0
+  sqflite: ^2.3.0
+  gal: ^2.3.3
+  share_plus: ^13.3.1
+  animations: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  test: ^1.31.1
+  flutter_lints: ^3.0.0
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/brand/app_icon.png
+    - assets/brand/bg_1.png
+    - assets/brand/bg_2.png
+    - assets/brand/bg_3.png
+    # The watermark fonts. ffmpeg's drawtext filter needs a real font FILE
+    # (the device build has no usable fontconfig, so there is no
+    # system-font fallback) and an asset inside the APK is not a file on
+    # disk -- the service copies each one out to the app's own directory at
+    # runtime. They are 2.5-3.5 MB subsets (GB2312 hanzi + Latin) of Noto
+    # Sans/Serif SC, produced by tool/build_watermark_font.py. The same
+    # files are registered as Flutter families below so the live preview
+    # draws the same face ffmpeg will use.
+    - assets/fonts/NotoSansSC-Regular.ttf
+    - assets/fonts/NotoSansSC-Bold.ttf
+    - assets/fonts/NotoSerifSC-Regular.ttf
+    - assets/fonts/NotoSerifSC-Bold.ttf
+
+  fonts:
+    # Each file gets its own family rather than sharing one with a weight
+    # pair: these are machine-generated subsets, and a shared family relies
+    # on the name table's subfamily names lining up.
+    - family: WatermarkSans
+      fonts:
+        - asset: assets/fonts/NotoSansSC-Regular.ttf
+    - family: WatermarkSansBold
+      fonts:
+        - asset: assets/fonts/NotoSansSC-Bold.ttf
+    - family: WatermarkSerif
+      fonts:
+        - asset: assets/fonts/NotoSerifSC-Regular.ttf
+    - family: WatermarkSerifBold
+      fonts:
+        - asset: assets/fonts/NotoSerifSC-Bold.ttf
