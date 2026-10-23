@@ -1,0 +1,21 @@
+Tugi 图叽
+Copyright (C) 2026 Tugi contributors
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program (see LICENSE).  If not, see <https://www.gnu.org/licenses/>.
+
+Third-party components are listed in THIRD_PARTY.md.  The bundled ffmpeg-kit
+full-gpl build carries the GNU GPL; the Noto fonts carry the SIL Open Font
+License 1.1 (text in assets/fonts/OFL-LICENSE.txt).
+
+"Tugi" and "图叽" are project names, not a claimed trademark registered by the
+authors; the name is used only to identify this software.
